@@ -1,0 +1,15 @@
+# DB Configuration:
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC
+    username: root
+    password: root
+
+#  Mybatis配置信息
+# Spring集成Mybatis环境
+mybatis:
+  # pojo别名扫描报
+  type-aliases-package: com.qianqiao.entity
+  # 加载Mybatis映射文件
+  mapper-locations: classpath:mapper/*Mapper.xml
