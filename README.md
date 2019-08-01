@@ -1,8 +1,56 @@
 ### SpringBoot与其他技术的整合
 
-#### 1、SpringBoot整合Mybatis
+#### 1、SpringBoot整合Jsp
+##### 1.1 pom.xml添加Jsp依赖
 
-##### 1.1 pom.xml添加Mybaits依赖
+```xml
+<!-- 整合Jsp -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-tomcat</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.apache.tomcat.embed</groupId>
+  <artifactId>tomcat-embed-jasper</artifactId>
+</dependency>
+
+<!-- JSTL -->
+<dependency>
+  <groupId>jstl</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
+
+<!-- lombok -->
+<dependency>
+  <groupId>org.projectlombok</groupId>
+  <artifactId>lombok</artifactId>
+  <version>1.18.6</version>
+</dependency>
+```
+
+##### 1.2 创建配置文件application.yml
+
+```yaml
+ spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+```
+
+##### 1.3 创建Handler
+
+```java
+
+```
+
+
+
+
+#### 3、SpringBoot整合Mybatis
+
+##### 3.1 pom.xml添加Mybaits依赖
 
 ``` xml
 <!-- Mybaits依赖 -->
@@ -13,7 +61,7 @@
 </dependency>
 ```
 
-##### 1.2 pom.xml添加数据库驱动依赖
+##### 3.2 pom.xml添加数据库驱动依赖
 
 ```xml
 <!-- MYSQL数据库连接驱动 -->
@@ -23,7 +71,7 @@
 </dependency>
 ```
 
-##### 1.3 添加数据库连接信息
+##### 3.3 添加数据库连接信息
 
 在application.yml中添加数据库的连接信息
 
@@ -37,7 +85,7 @@ spring:
     password: root
 ```
 
-##### 1.4 创建student表
+##### 3.4 创建student表
 
 ``` sql
 -- -------------------------------
@@ -60,7 +108,7 @@ INSERT INTO `student` VALUES('1','zhangsan','123','张三');
 INSERT INTO `student` VALUES('2','lisi','123','李四');
 ```
 
-##### 1.5 创建实体Ben
+##### 3.5 创建实体Ben
 
 ``` java
 @Data
@@ -72,7 +120,7 @@ public class Student {
 }
 ```
 
-#####  1.6 编写Mapper
+#####  3.6 编写Mapper
 
 ``` java
 @Mapper
@@ -81,7 +129,7 @@ public interface StudentMapper {
 }
 ```
 
-##### 1.7 配置Mapper映射文件
+##### 3.7 配置Mapper映射文件
 
 ``` xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -93,7 +141,7 @@ public interface StudentMapper {
 </mapper>
 ```
 
-##### 1.8 在application.yml中添加Mybatis的信息
+##### 3.8 在application.yml中添加Mybatis的信息
 
 ```yaml
 # Mybatis配置信息
@@ -105,7 +153,7 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
 ```
 
-##### 1.9 编写测试Controller
+##### 3.9 编写测试Controller
 
 ```java
 @RestController
@@ -122,9 +170,9 @@ public class MybatisController {
 }
 ```
 
-#### 2、SpringBoot整合junit
+#### 4、SpringBoot整合junit
 
-##### 2.1 pom.xml添加junit依赖
+##### 4.1 pom.xml添加junit依赖
 
 ```xml
 <!-- junit测试依赖 -->
@@ -135,7 +183,7 @@ public class MybatisController {
 </dependency>
 ```
 
-##### 2.2 编写测试类
+##### 4.2 编写测试类
 
 ``` java
 @RunWith(SpringRunner.class)
@@ -152,9 +200,9 @@ public class MybatisTest {
 }
 ```
 
-#### 3、SpringBoot整合Spring Date JPA
+#### 5、SpringBoot整合Spring Date JPA
 
-##### 3.1 pom.xml添加Spring Date JPA依赖
+##### 5.1 pom.xml添加Spring Date JPA依赖
 
 ```xml
 <!--添加springdata-jpa依赖 -->
@@ -164,7 +212,7 @@ public class MybatisTest {
 </dependency>
 ```
 
-##### 3.2  pom.xml添加数据库驱动依赖
+##### 5.2  pom.xml添加数据库驱动依赖
 
 ```xml
 <!--添加MySQL驱动依赖 -->
@@ -175,7 +223,7 @@ public class MybatisTest {
 </dependency>
 ```
 
-##### 3.3 在application.yml中配置数据库和jpa的相关属性
+##### 5.3 在application.yml中配置数据库和jpa的相关属性
 
 ```yaml
 # DB Configuration:
@@ -194,7 +242,7 @@ spring:
       ddl-auto: update
 ```
 
-##### 3.4 创建和配置实体
+##### 5.4 创建和配置实体
 
 ```java
 @Data
@@ -209,7 +257,7 @@ public class Student {
 }
 ```
 
-##### 3.5 编写StudentRepository
+##### 5.5 编写StudentRepository
 
 ```java
 public interface StudentRepository extends JpaRepository<Student,Integer> {
@@ -217,7 +265,7 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
 }
 ```
 
-##### 3.6 编写测试类
+##### 5.6 编写测试类
 
 ``` java
 @RunWith(SpringRunner.class)
@@ -235,9 +283,9 @@ public class JpaTests {
 }
 ```
 
-#### 4、SpringBoot整合Redis
+#### 7、SpringBoot整合Redis
 
-##### 4.1 pom.xml添加Redis依赖
+##### 7.1 pom.xml添加Redis依赖
 
 ```xml
 <!--添加Redis依赖 -->
@@ -247,7 +295,7 @@ public class JpaTests {
 </dependency>
 ```
 
-##### 4.2 编写测试类
+##### 7.2 编写测试类
 
 ```java
 @RunWith(SpringRunner.class)
