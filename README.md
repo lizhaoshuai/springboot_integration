@@ -21,12 +21,6 @@
   <version>1.2</version>
 </dependency>
 
-<!-- lombok -->
-<dependency>
-  <groupId>org.projectlombok</groupId>
-  <artifactId>lombok</artifactId>
-  <version>1.18.6</version>
-</dependency>
 ```
 
 ##### 1.2 创建配置文件application.yml
@@ -68,6 +62,8 @@
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.49</version>
+    <scope>runtimer</scope>
 </dependency>
 ```
 
@@ -79,10 +75,9 @@
 # DB Configuration:
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC
-    username: root
-    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/数据库名称?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    password: ****
 ```
 
 ##### 3.4 创建student表
@@ -111,12 +106,14 @@ INSERT INTO `student` VALUES('2','lisi','123','李四');
 ##### 3.5 创建实体Ben
 
 ``` java
-@Data
 public class Student {    
     private Integer id;
     private String username;
     private String password;
     private String name;
+    
+    ...
+    省略Getter和Setter方法
 }
 ```
 
@@ -219,7 +216,8 @@ public class MybatisTest {
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
+    <version>5.1.49</version>
+    <scope>runtimer</scope>
 </dependency>
 ```
 
@@ -229,10 +227,10 @@ public class MybatisTest {
 # DB Configuration:
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/数据库名称?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
     username: root
-    password: root
+    password: ****
   # JPA Configuration:
   jpa:
     database: MySQL
